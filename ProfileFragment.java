@@ -1,5 +1,4 @@
 //java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 import android.os.Bundle;
@@ -30,6 +29,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         userAge = (TextView) rootView.findViewById(R.id.userAge);
         userWeight = (TextView) rootView.findViewById(R.id.userWeight);
         userHeight = (TextView) rootView.findViewById(R.id.userHeight);
+
+        //TODO tiedot saatava käyttäjä-oliosta
 
         userAge.setText("User age");
         userHeight.setText("User Height");
