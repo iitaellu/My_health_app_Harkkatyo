@@ -71,5 +71,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     //TODO käyttäjän antamien tietojen perusteella arvioidaan montako lasillista (250ml), käyttäjän on juotava päivässä.
     // Käyttäjä painaa nappia niin monesti, kuin on juonut vaaditun määrän
     // joka päivä nollautuu (if time == 00.00) tai jotain. en tie
+    // faktaa https://www.mtvuutiset.fi/makuja/artikkeli/ravitsemisterapeutti-nain-paljon-vetta-pitaisi-oikeasti-juoda-paivassa/6188936#gs.6y3sm0
 }
+
 
