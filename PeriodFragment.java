@@ -18,3 +18,6 @@ public class PeriodFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_period, container, false);
     }
 }
+
+//TODO Käyttäjän on jossain kohtaa annettava kuukautistensa kierto.
+// Täällä kone laitetaan laskemaan joka päivä yksi päivä lisää kunnes käyttäjä painaa nappia, oka nollaa laskurin
