@@ -21,6 +21,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
     Button addFood, addWater, addSport, startPeriod;
+    
+    //TODO pitäs siis tervehtiä käyttäjä-oliota
 
 
 
