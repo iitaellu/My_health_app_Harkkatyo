@@ -1,0 +1,171 @@
+//layout
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textWater"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_drink"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="    Water counter\n    0/5 Glasses"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
+        app:layout_constraintVertical_bias="0.278" />
+
+    <Button
+        android:id="@+id/startPeriod"
+        android:layout_width="69dp"
+        android:layout_height="39dp"
+        android:text="Start"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textPeriod"
+        app:layout_constraintEnd_toEndOf="@+id/textPeriod"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="@+id/textPeriod"
+        app:layout_constraintTop_toTopOf="@+id/textPeriod"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <Button
+        android:id="@+id/addWater"
+        android:layout_width="69dp"
+        android:layout_height="39dp"
+        android:text="Add"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textWater"
+        app:layout_constraintEnd_toEndOf="@+id/textWater"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="@+id/textWater"
+        app:layout_constraintTop_toTopOf="@+id/textWater"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <TextView
+        android:id="@+id/textFood"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_food"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="    Food counter\n    0/1800 kcal"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
+        app:layout_constraintVertical_bias="0.075" />
+
+    <Button
+        android:id="@+id/addFood"
+        android:layout_width="69dp"
+        android:layout_height="39dp"
+        android:text="Add"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textFood"
+        app:layout_constraintEnd_toEndOf="@+id/textFood"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="@+id/textFood"
+        app:layout_constraintTop_toTopOf="@+id/textFood" />
+
+    <TextView
+        android:id="@+id/userNameHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/handlee"
+        android:text="Hi Name!"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <Button
+        android:id="@+id/addSport"
+        android:layout_width="69dp"
+        android:layout_height="39dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Add"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textSport"
+        app:layout_constraintEnd_toEndOf="@+id/textSport"
+        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintStart_toStartOf="@+id/textSport"
+        app:layout_constraintTop_toTopOf="@+id/textSport" />
+
+    <TextView
+        android:id="@+id/textSport"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_sport"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="    Exercise\n    0 min"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
+        app:layout_constraintVertical_bias="0.485" />
+
+    <TextView
+        android:id="@+id/textPeriod"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_period"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="    Menstrual tracker\n    15 day left"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
+        app:layout_constraintVertical_bias="0.687" />
+
+    <Button
+        android:id="@+id/statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Statistics"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
