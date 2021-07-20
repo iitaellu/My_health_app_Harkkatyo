@@ -17,4 +17,8 @@ public class WaterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_water, container, false);
     }
+
+    //TODO käyttäjän antamien tietojen perusteella arvioidaan montako lasillista (250ml), käyttäjän on juotava päivässä.
+    // Käyttäjä painaa nappia niin monesti, kuin on juonut vaaditun määrän
+    // joka päivä nollautuu (if time == 00.00) tai jotain. en tie
 }
