@@ -19,5 +19,6 @@ public class FoodFragment extends Fragment {
 
         //TODO joka API:n jutulle oma kohta (ei kuitenkaan pakko käyttää kaikkia mut kiakille niille mitä halutaan käyttää)
         // näiden tietojen avulla rakennetaan linkki. Sen lisäksi käyttäjän on kerrottava oleelliset tiedot kalorien laskemista varten
+        // faktaa https://www.nutrilett.fi/paivittaiset-kalorit-ja-kaloreiden-kulutus/
     }
 }
