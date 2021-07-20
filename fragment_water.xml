@@ -9,12 +9,11 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/infoWater"
+        android:id="@+id/thisMuchWater"
         android:layout_width="352dp"
-        android:layout_height="114dp"
+        android:layout_height="95dp"
         android:gravity="center"
-        android:text="You should drink ... glass water in day. You are drank ... glass."
-        android:textSize="30dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -22,17 +21,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.238" />
 
-    <Button
-        android:id="@+id/mediumGlass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="500ml"
+    <TextView
+        android:id="@+id/infoWater"
+        android:layout_width="298dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
+        app:layout_constraintVertical_bias="0.97" />
 
     <Button
         android:id="@+id/bigGlass"
@@ -44,19 +44,19 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.711" />
 
     <Button
-        android:id="@+id/largeGlass"
+        android:id="@+id/mediumGlass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1l"
+        android:text="500ml"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+        app:layout_constraintVertical_bias="0.616" />
 
     <Button
         android:id="@+id/smallGlass"
@@ -68,7 +68,19 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.518" />
+
+    <Button
+        android:id="@+id/largeGlass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1l"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
 
     <TextView
         android:id="@+id/infoWater2"
@@ -81,6 +93,6 @@
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintVertical_bias="0.397" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
