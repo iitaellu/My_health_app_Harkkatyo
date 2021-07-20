@@ -1,5 +1,3 @@
-//java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 import android.os.Bundle;
@@ -127,3 +125,5 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     public void onNothingSelected(AdapterView<?> parent) {
     }
 }
+
+//TODO Täytyy tallentaa tiedot ja koodin on kyettävä ottamaan spinnerien arvot talteen
