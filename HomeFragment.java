@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,15 +22,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
     Button addFood, addWater, addSport, startPeriod;
-    
-    //TODO pitäs siis tervehtiä käyttäjä-oliota
 
+    //TODO pitäs siis tervehtiä käyttäjä-oliota
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        TextView textFood = (TextView) rootView.findViewById(R.id.textFood);
+        TextView textWater = (TextView) rootView.findViewById(R.id.textWater);
+        TextView textSport = (TextView) rootView.findViewById(R.id.textSport);
+        TextView textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
+        
+        //TODO seuraavat infot pitäs saada oiolta
+        textFood.setText("    Food counter\n    0/1800 kcal");
+        textWater.setText("    Water counter\n    0/5 Glasses");
+        textSport.setText("    Exercise\n    0 min");
+        textPeriod.setText("    Menstrual tracker\n    15 day left");
 
         Button addFood = (Button) rootView.findViewById(R.id.addFood);
         Button addWater = (Button) rootView.findViewById(R.id.addWater);
