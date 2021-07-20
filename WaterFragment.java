@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,12 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_water, container, false);
+
+        TextView thisMuchWater = (TextView) rootView.findViewById(R.id.thisMuchWater);
+        TextView infoWater = (TextView) rootView.findViewById(R.id.infoWater);
+
+        thisMuchWater.setText("You should drink ... ml of water per day.");
+        infoWater.setText("You are drunk ... ml of water today");
 
         Button smallGlass = (Button) rootView.findViewById(R.id.smallGlass);
         Button mediumGlass = (Button) rootView.findViewById(R.id.mediumGlass);
@@ -65,3 +72,4 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     // Käyttäjä painaa nappia niin monesti, kuin on juonut vaaditun määrän
     // joka päivä nollautuu (if time == 00.00) tai jotain. en tie
 }
+
