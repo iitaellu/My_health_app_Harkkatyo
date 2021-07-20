@@ -16,5 +16,8 @@ public class FoodFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_food, container, false);
+
+        //TODO joka API:n jutulle oma kohta (ei kuitenkaan pakko käyttää kaikkia mut kiakille niille mitä halutaan käyttää)
+        // näiden tietojen avulla rakennetaan linkki. Sen lisäksi käyttäjän on kerrottava oleelliset tiedot kalorien laskemista varten
     }
 }
