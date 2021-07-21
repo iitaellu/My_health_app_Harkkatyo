@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FoodFragment extends Fragment {
+public class FoodFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,11 +37,19 @@ public class FoodFragment extends Fragment {
         preferAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPrefer.setAdapter(preferAdapter);
 
-        return rootView;
+        Button calculateButton = (Button) rootView.findViewById(R.id.calculateButton);
+        calculateButton.setOnClickListener(this);
 
-        //TODO joka API:n jutulle oma kohta (ei kuitenkaan pakko käyttää kaikkia mut kiakille niille mitä halutaan käyttää)
-        // näiden tietojen avulla rakennetaan linkki. Sen lisäksi käyttäjän on kerrottava oleelliset tiedot kalorien laskemista varten
+        return rootView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(),"Calculated and saved",Toast.LENGTH_LONG).show();
+
+        //TODO kerää annetut tiedot parametreihin. Näiden parametrien avulla rakennetaan linkki,
+        // nämä linkin tulokset kirjoitetaan xml tiedostoon. Total riittää!!!!
+        // mikäli kirjoitus ei syystä tai toisesta onnistu Toastaa siitä!
         // faktaa https://www.nutrilett.fi/paivittaiset-kalorit-ja-kaloreiden-kulutus/
-        // https://stackoverflow.com/questions/17982410/convert-number-in-textview-to-int string -> integer
     }
 }
