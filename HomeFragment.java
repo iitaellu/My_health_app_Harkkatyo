@@ -24,6 +24,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     Button addFood, addWater, addSport, startPeriod;
 
     //TODO pitäs siis tervehtiä käyttäjä-oliota
+    // Date https://stackoverflow.com/questions/8654990/how-can-i-get-current-date-in-android
 
 
     @Nullable
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         TextView textWater = (TextView) rootView.findViewById(R.id.textWater);
         TextView textSport = (TextView) rootView.findViewById(R.id.textSport);
         TextView textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
-        
+
         //TODO seuraavat infot pitäs saada oiolta
         textFood.setText("    Food counter\n    0/1800 kcal");
         textWater.setText("    Water counter\n    0/5 Glasses");
