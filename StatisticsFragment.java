@@ -18,5 +18,6 @@ public class StatisticsFragment extends Fragment {
         return inflater.inflate(R.layout.statistics_fragment, container, false);
 
         //TODO kaavioita tallennettujen tietoje n perusteella
+        // kuinka kirjoitetaan XML https://www.youtube.com/watch?v=IJEIQ1f5KB8
     }
 }
