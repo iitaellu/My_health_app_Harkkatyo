@@ -1,9 +1,5 @@
 package com.example.loginsystem;
 
-//source:
-//https://www.youtube.com/watch?v=tbh9YaWPKKs
-//https://www.youtube.com/watch?v=TwHmrZxiPA8
-
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
