@@ -23,6 +23,7 @@ public class Login extends AppCompatActivity {
     EditText email, password;
     Button login;
     TextView signin;
+    TextView inside;
 
     FirebaseAuth fAuth;
     ProgressBar progressBar;
@@ -36,11 +37,18 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.etPassword);
         login = findViewById(R.id.btnLogin);
         signin = findViewById(R.id.tvSignin);
+        inside = findViewById(R.id.tvIn);
 
         fAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar2);
 
-
+        //Go to the homecreen without loggin in
+        inside.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, MainActivity.class));
+            }
+        });
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
