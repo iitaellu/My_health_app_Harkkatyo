@@ -10,11 +10,26 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LogoutFragment extends Fragment {
+    
+    TextView tvLogOut;
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_logout, container, false);
+        //check the LogoutFragment xml is fragment_login or not
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        
+        //check the name of the logout tv is it tvLogout or not
+        tvLogOut = view.findViewById(R.id.tvLogout);
+        return view;
+    }
+    
+    public void tvLogOut(View v){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), Login.class));
+        finish();
     }
 }
