@@ -98,7 +98,7 @@ public class FoodFragment extends Fragment {
                 try {
 
                     String result = total(diet, prefer, beef, fish, pork_poultry, dairy, cheese, rice, egg, salad, restaurant);
-                    textTotal.setText(result+" kg CO2/day");
+                    textTotal.setText(result+" kg CO2/week");
                     Toast.makeText(getActivity(),"Calculated",Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -131,7 +131,7 @@ public class FoodFragment extends Fragment {
         String wanted = list[5];
         wanted = wanted.replace("}", "");
         double total = Double.parseDouble(wanted);
-        total = total/365;
+        total = total/52;
         total = Math.round(total*100)/100;
 
 
