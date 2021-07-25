@@ -65,7 +65,7 @@ public class Signin extends AppCompatActivity {
                 String mail = email.getText().toString().trim();
                 String pass = password.getText().toString().trim();
                 String name = username.getText().toString().trim();
-                String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=]).{8,}";
+                String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=]).{12,}";
 
                 if(TextUtils.isEmpty(name)){
                     username.setError("Username is required");
