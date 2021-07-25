@@ -1,0 +1,6 @@
+package com.example.myhealth;
+
+//Tähän arraylist joihin päästään helposti käsiksi homecreenissä....
+
+public class InfoList {
+}
