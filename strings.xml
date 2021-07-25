@@ -6,10 +6,17 @@
         of the navigation drawer-->
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
-    
+
     <string-array name= "Boolean">
         <item>True</item>
         <item>False</item>
+    </string-array>
+
+    <string-array name= "Diet">
+        <item>Omnivore</item>
+        <item>Vegan</item>
+        <item>Vegetarien</item>
+
     </string-array>
 
 </resources>
