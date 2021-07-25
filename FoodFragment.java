@@ -4,7 +4,6 @@ package com.example.harjoitustyo_ida_viia;
 
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,27 +18,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-public class FoodFragment extends Fragment implements View.OnClickListener {
+public class FoodFragment extends Fragment {
 
     TextView textTotal;
+    Spinner spinnerPrefer, spinnerDiet;
     EditText beefLevel, fishLevel, pork_PoultryLevel, dairyLevel, cheeseLevel, riceLevel, eggLevel, saladLevel, restaurantLevel;
 
     @Nullable
@@ -57,82 +43,98 @@ public class FoodFragment extends Fragment implements View.OnClickListener {
         saladLevel = (EditText) rootView.findViewById(R.id.saladLevel);
         restaurantLevel = (EditText) rootView.findViewById(R.id.restaurantLevel);
 
-        Spinner spinnerPrefer = (Spinner) rootView.findViewById(R.id.spinnerPrefer);
-        ArrayAdapter<CharSequence> preferAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.Boolean, android.R.layout.simple_spinner_item);
-        preferAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPrefer.setAdapter(preferAdapter);
+        spinnerPrefer = (Spinner) rootView.findViewById(R.id.spinnerPrefer);
+        spinnerDiet = (Spinner) rootView.findViewById(R.id.spinnerDiet);
 
         textTotal = (TextView) rootView.findViewById(R.id.textTotal);
 
 
         Button calculateButton = (Button) rootView.findViewById(R.id.calculateButton);
-        calculateButton.setOnClickListener(this);
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String prefer = spinnerPrefer.getSelectedItem().toString();
+                String diet = spinnerDiet.getSelectedItem().toString();
+
+                String beef = beefLevel.getText().toString();
+                String fish = fishLevel.getText().toString();
+                String pork_poultry = pork_PoultryLevel.getText().toString();
+                String dairy = dairyLevel.getText().toString();
+                String cheese = cheeseLevel.getText().toString();
+                String rice = riceLevel.getText().toString();
+                String egg = eggLevel.getText().toString();
+                String salad = saladLevel.getText().toString();
+                String restaurant = restaurantLevel.getText().toString();
+
+                if (beef.equals("")) {
+                    beef = "0";
+                }
+                if (fish.equals("")) {
+                    fish = "0";
+                }
+                if (pork_poultry.equals("")) {
+                    pork_poultry = "0";
+                }
+                if (dairy.equals("")) {
+                    dairy = "0";
+                }
+                if (cheese.equals("")) {
+                    cheese = "0";
+                }
+                if (rice.equals("")) {
+                    rice = "0";
+                }
+                if (egg.equals("")) {
+                    egg = "0";
+                }
+                if (salad.equals("")) {
+                    salad = "0";
+                }
+                if (restaurant.equals("")) {
+                    restaurant = "0";
+                }
+
+                try {
+
+                    String result = total(diet, prefer, beef, fish, pork_poultry, dairy, cheese, rice, egg, salad, restaurant);
+                    textTotal.setText(result+" kg CO2/day");
+                    Toast.makeText(getActivity(),"Calculated",Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         return rootView;
     }
 
-    @Override
-    public void onClick(View v) {
+    // This method read url-page and find total/day
 
-        String tempBeef = beefLevel.getText().toString();
-        String tempFish = fishLevel.getText().toString();
-        String tempPork_Poultry = pork_PoultryLevel.getText().toString();
-        String tempDairy = dairyLevel.getText().toString();
-        String tempCheese = cheeseLevel.getText().toString();
-        String tempRice = riceLevel.getText().toString();
-        String tempEgg = eggLevel.getText().toString();
-        String tempSalad = saladLevel.getText().toString();
-        String tempRestaurant = restaurantLevel.getText().toString();
+    public String total(String diet, String prefer, String beef, String fish, String pork_poultry, String dairy, String cheese, String rice, String egg, String salad, String restaurant) throws IOException{
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-        int beef = 0;
-        int fish = 0;
-        int pork_poultry = 0;
-        int dairy = 0;
-        int cheese = 0;
-        int rice = 0;
-        int egg = 0;
-        int salad = 0;
-        int restaurant = 0;
-        String total = null;
+        StrictMode.setThreadPolicy(policy);
+        String url ="https://ilmastodieetti.ymparisto.fi/ilmastodieetti/calculatorapi/v1/FoodCalculator?query.diet="
+                +diet+"&query.lowCarbonPreference="+prefer+"&query.beefLevel="+beef+"&query.fishLevel="
+                +fish+"&query.porkPoultryLevel="+pork_poultry+"&query.dairyLevel="+dairy+"&query.cheeseLevel="+cheese
+                +"&query.riceLevel=" +rice+"&query.eggLevel="+egg+"&query.winterSaladLevel="+salad+"&query.restaurantSpending="+restaurant;
+        URL page = new URL(url);
+        Scanner scan = new Scanner(page.openStream());
+        StringBuffer buffer = new StringBuffer();
+        while (scan.hasNext()){
+            buffer.append(scan.next());
+        }
+        String result = buffer.toString();
 
-        if(!"".equals(tempBeef)){
-            beef=Integer.parseInt(tempBeef);
-        }
-        if(!"".equals(tempFish)){
-            fish=Integer.parseInt(tempFish);
-        }
-        if(!"".equals(tempPork_Poultry)){
-            pork_poultry=Integer.parseInt(tempPork_Poultry);
-        }
-        if(!"".equals(tempDairy)){
-            dairy=Integer.parseInt(tempDairy);
-        }
-        if(!"".equals(tempCheese)){
-            cheese=Integer.parseInt(tempCheese);
-        }
-        if(!"".equals(tempRice)){
-            rice=Integer.parseInt(tempRice);
-        }
-        if(!"".equals(tempEgg)){
-            egg=Integer.parseInt(tempEgg);
-        }
-        if(!"".equals(tempSalad)){
-            salad=Integer.parseInt(tempSalad);
-        }
-        if(!"".equals(tempRestaurant)){
-            restaurant=Integer.parseInt(tempRestaurant);
-        }
+        String[] list = result.split(":");
+        String wanted = list[5];
+        wanted = wanted.replace("}", "");
+        double total = Double.parseDouble(wanted);
+        total = total/365;
+        total = Math.round(total*100)/100;
 
-        //total = beef;
 
-        textTotal.setText(total);
-        Toast.makeText(getActivity(),"Calculated and saved",Toast.LENGTH_LONG).show();
-
-        //TODO kerää annetut tiedot parametreihin. Näiden parametrien avulla rakennetaan linkki,
-        // nämä linkin tulokset kirjoitetaan xml tiedostoon. Total riittää!!!!
-        // mikäli kirjoitus ei syystä tai toisesta onnistu Toastaa siitä!
-        // faktaa https://www.nutrilett.fi/paivittaiset-kalorit-ja-kaloreiden-kulutus/
+        return String.valueOf(total);
     }
 }
-
-
