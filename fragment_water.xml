@@ -26,6 +26,7 @@
         android:layout_width="298dp"
         android:layout_height="80dp"
         android:gravity="center"
+        android:text="You are drank 0 ml of water today"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
