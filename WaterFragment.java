@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment;
 
 public class WaterFragment extends Fragment implements View.OnClickListener {
 
+    private int water = 0;
+    TextView infoWater;
+
     Button smallGlass, mediumGlass, bigGlass, largeGlass;
 
     @Nullable
@@ -25,10 +28,10 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_water, container, false);
 
         TextView thisMuchWater = (TextView) rootView.findViewById(R.id.thisMuchWater);
-        TextView infoWater = (TextView) rootView.findViewById(R.id.infoWater);
+        infoWater = (TextView) rootView.findViewById(R.id.infoWater);
 
-        thisMuchWater.setText("You should drink ... ml of water per day.");
-        infoWater.setText("You are drunk ... ml of water today");
+        thisMuchWater.setText("You should drink 1-1,5l of water per day.");
+
 
         Button smallGlass = (Button) rootView.findViewById(R.id.smallGlass);
         Button mediumGlass = (Button) rootView.findViewById(R.id.mediumGlass);
@@ -40,38 +43,43 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         bigGlass.setOnClickListener(this);
         largeGlass.setOnClickListener(this);
 
-
         return rootView;
     }
 
     @Override
     public void onClick(View v) {
 
-        switch(v.getId()){
+        switch(v.getId()) {
             case R.id.smallGlass:
-                //add 250ml
-                Toast.makeText(getActivity(),"250ml drunk",Toast.LENGTH_LONG).show();
+                water = water + 250;
+                System.out.println(water);
+                infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+                Toast.makeText(getActivity(), "250ml drunk", Toast.LENGTH_LONG).show();
                 break;
             case R.id.mediumGlass:
-                //add 500ml
-                Toast.makeText(getActivity(),"500ml drunk",Toast.LENGTH_LONG).show();
+                water = water + 500;
+                System.out.println(water);
+                infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+                Toast.makeText(getActivity(), "500ml drunk", Toast.LENGTH_LONG).show();
                 break;
             case R.id.bigGlass:
-                //add 600ml
-                Toast.makeText(getActivity(),"600ml drunk",Toast.LENGTH_LONG).show();
+                water = water + 600;
+                System.out.println(water);
+                infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+                Toast.makeText(getActivity(), "600ml drunk", Toast.LENGTH_LONG).show();
                 break;
             case R.id.largeGlass:
-                //add 1000ml
-                Toast.makeText(getActivity(),"1l drunk",Toast.LENGTH_LONG).show();
+                water = water + 1000;
+                System.out.println(water);
+                infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+                Toast.makeText(getActivity(), "1l drunk", Toast.LENGTH_LONG).show();
                 break;
         }
 
     }
 
-    //TODO käyttäjän antamien tietojen perusteella arvioidaan montako lasillista (250ml), käyttäjän on juotava päivässä.
-    // Käyttäjä painaa nappia niin monesti, kuin on juonut vaaditun määrän
-    // joka päivä nollautuu (if time == 00.00) tai jotain. en tie
+
+
+    //TODO Tietojen tallennus (päivämäärä + uusin vesimäärä) ja reset nappi, jotta käyttäjä voi nollata tiedot seuraavaa päivää varten
     // faktaa https://www.mtvuutiset.fi/makuja/artikkeli/ravitsemisterapeutti-nain-paljon-vetta-pitaisi-oikeasti-juoda-paivassa/6188936#gs.6y3sm0
 }
-
-
