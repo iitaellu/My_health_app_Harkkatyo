@@ -97,7 +97,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
-
+    
+    //This method change page what user see
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transition = getFragmentManager().beginTransaction();
         transition.replace(R.id.fragment_container, someFragment);
