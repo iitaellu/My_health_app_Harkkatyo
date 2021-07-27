@@ -132,9 +132,11 @@ public class FoodFragment extends Fragment {
         wanted = wanted.replace("}", "");
         double total = Double.parseDouble(wanted);
         total = total/52;
-        total = Math.round(total*100)/100;
+        String resulttotal = String.valueOf(total);
+        resulttotal = String.format("%.2f", total);
 
 
-        return String.valueOf(total);
+        return resulttotal;
     }
+}
 }
