@@ -102,7 +102,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     //This method make file, if there is not one yet
     public void makeFile() {
         try {
-            String content = "Date, drank ml of water;\n";
+            String content = "Date,drank ml of water;\n";
             File file = new File(getActivity().getFilesDir().getPath() + "/" + name);
 
             if (!file.exists()) {
