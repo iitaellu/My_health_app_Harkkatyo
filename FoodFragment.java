@@ -119,7 +119,7 @@ public class FoodFragment extends Fragment {
                 try {
 
                     result = total(diet, prefer, beef, fish, pork_poultry, dairy, cheese, rice, egg, salad, restaurant);
-                    textTotal.setText(result+"kg CO2/week");
+                    textTotal.setText(result+" kg CO2/week");
                     writeFile(result);
                     Toast.makeText(getActivity(),"Saved",Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
@@ -163,7 +163,7 @@ public class FoodFragment extends Fragment {
     //This method make file, if there is not one yet
     public void makeFile() {
         try {
-            String content = "Date, kg CO2/week;\n";
+            String content = "Date,kg CO2/week;\n";
             File file = new File(getActivity().getFilesDir().getPath() + "/" + name);
 
             if (!file.exists()) {
@@ -192,5 +192,3 @@ public class FoodFragment extends Fragment {
         }
     }
 }
-
-
