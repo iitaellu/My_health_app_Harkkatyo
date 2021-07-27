@@ -1,4 +1,3 @@
-//java -> eka file
 package com.example.harjoitustyo_ida_viia;
 
 
@@ -102,7 +101,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     //This method make file, if there is not one yet
     public void makeFile() {
         try {
-            String content = "Date,drank ml of water;\n";
+            String content = "Date;Drank ml of water\n";
             File file = new File(getActivity().getFilesDir().getPath() + "/" + name);
 
             if (!file.exists()) {
@@ -123,7 +122,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     public void writeFile(String ml) {
         try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() + "/" + name, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
-            writer.append(date+ ","+ ml + ";\n");
+            writer.append(date+ ";"+ ml + "\n");
             writer.flush();
             writer.close();
         } catch (IOException e) {
@@ -142,13 +141,14 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
             br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() + "/" + name));
             StringBuffer buffer = new StringBuffer();
             while ((line = br.readLine()) != null) {
+                line = line+",";
                 buffer.append(line);
             }
             String result = buffer.toString();
-            lines = result.split(";");
+            lines = result.split(",");
 
             String wanted = lines[lines.length-1];
-            String[] date_ml = wanted.split(",");
+            String[] date_ml = wanted.split(";");
             return date_ml;
         } catch (IOException e) {
             e.printStackTrace();
@@ -162,20 +162,23 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         return null;
     }
 
-    //This method check if date is changed and set right amount of drinking water of that day. 
+    //This method check if date is changed and set right amount of drinking water of that day.
     // if day is changed, water amount is 0ml if not program get right amount of the file, with rideFile.
     public void set() {
         String[] dates = readFile();
-        String current = dates[0].trim();
 
-        System.out.println("!"+current + "----" + date+"!");
-        if (current.equals(date)){
-            water = Integer.parseInt(dates[1]);
-            infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+        if(dates != null) {
+            String current = dates[0].trim();
+            if (current.equals(date)) {
+                water = Integer.parseInt(dates[1]);
+                infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+            } else {
+                water = 0;
+                infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+            }
         }
         else {
-            water = 0;
-            infoWater.setText("You are drank " + Integer.toString(water) + "ml of water today");
+            infoWater.setText("You are drank 0ml of water today");
         }
     }
 }
