@@ -1,5 +1,3 @@
-//java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 import android.content.Context;
@@ -39,7 +37,7 @@ public class FoodFragment extends Fragment {
     Spinner spinnerPrefer, spinnerDiet;
     EditText beefLevel, fishLevel, pork_PoultryLevel, dairyLevel, cheeseLevel, riceLevel, eggLevel, saladLevel, restaurantLevel;
     String date;
-    String name = "FoodCalculator.csv";
+    String name = "FoodCounter.csv";
     String result = null;
 
     @Nullable
@@ -163,7 +161,7 @@ public class FoodFragment extends Fragment {
     //This method make file, if there is not one yet
     public void makeFile() {
         try {
-            String content = "Date,kg CO2/week;\n";
+            String content = "Date;kg CO2/week\n";
             File file = new File(getActivity().getFilesDir().getPath() + "/" + name);
 
             if (!file.exists()) {
@@ -184,7 +182,7 @@ public class FoodFragment extends Fragment {
     public void writeFile(String total) {
         try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() + "/" + name, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
-            writer.append(date+ ","+ total + ";\n");
+            writer.append(date+ ";"+ total + "\n");
             writer.flush();
             writer.close();
         } catch (IOException e) {
@@ -192,3 +190,4 @@ public class FoodFragment extends Fragment {
         }
     }
 }
+
