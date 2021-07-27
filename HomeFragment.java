@@ -1,5 +1,3 @@
-//java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 import android.content.Intent;
@@ -18,6 +16,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,9 +28,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
     Button addFood, addWater, addSport, startPeriod;
+    String Food = "FoodCounter.csv";
+    String Water = "WaterCounter.csv";
+    String Exercise = "Exercise.csv";
 
     //TODO pitäs siis tervehtiä käyttäjä-oliota
-    // Date https://stackoverflow.com/questions/8654990/how-can-i-get-current-date-in-android
 
 
     @Nullable
@@ -49,13 +52,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         TextView textWater = (TextView) rootView.findViewById(R.id.textWater);
         TextView textSport = (TextView) rootView.findViewById(R.id.textSport);
         TextView textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
-        
 
-        //TODO seuraavat infot pitäs saada jostain
-        textFood.setText("    Food counter\n    0/1800 kcal");
-        textWater.setText("    Water counter\n    0/5 Glasses");
-        textSport.setText("    Exercise\n    0 min");
-        textPeriod.setText("    Menstrual tracker\n    15 day left");
+        String totalFood = readSimpleFile(Food);
+        String totalWater = readSimpleFile(Water);
+        String[] totalInfo = readComplicatedFile(Exercise);
+
+        textFood.setText("    Food counter\n    "+totalFood+" Kg CO2 last week");
+        textWater.setText("    Water counter\n    "+totalWater+"ml today");
+        textSport.setText("    Exercise\n    "+ totalInfo[0]+": "+totalInfo[2]+"h today");
+        textPeriod.setText("    Menstrual tracker\n    29 day left");
 
         Button addFood = (Button) rootView.findViewById(R.id.addFood);
         Button addWater = (Button) rootView.findViewById(R.id.addWater);
@@ -71,6 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         return rootView;
     }
+
     @Override
     public void onClick(View v) {
         Fragment fragment = null;
@@ -97,12 +103,76 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
-    
+
     //This method change page what user see
+
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transition = getFragmentManager().beginTransaction();
         transition.replace(R.id.fragment_container, someFragment);
         transition.addToBackStack(null);
         transition.commit();
+    }
+
+    //This method read smaller files, like Water counter and food counter.
+    //It returns total from last row.
+    public String readSimpleFile(String name) {
+        BufferedReader br = null;
+        try {
+            String line;
+            String[] lines;
+            br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() + "/" + name));
+            StringBuffer buffer = new StringBuffer();
+            while ((line = br.readLine()) != null) {
+                line = line+",";
+                buffer.append(line);
+            }
+            String result = buffer.toString();
+            lines = result.split(",");
+
+            String wanted = lines[lines.length-1];
+            String[] info = wanted.split(";");
+            String total = info[1];
+            return total;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+    
+    //This method read little bigger files, like exercise file. 
+    // It returns last row of file.
+    public String[] readComplicatedFile(String name) {
+        BufferedReader br = null;
+        try {
+            String line;
+            String[] lines;
+            br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() + "/" + name));
+            StringBuffer buffer = new StringBuffer();
+            while ((line = br.readLine()) != null) {
+                line = line+",";
+                buffer.append(line);
+            }
+            String result = buffer.toString();
+            lines = result.split(",");
+
+            String wanted = lines[lines.length-1];
+            String[] info = wanted.split(":");
+            return info;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
     }
 }
