@@ -139,4 +139,3 @@ public class FoodFragment extends Fragment {
         return resulttotal;
     }
 }
-}
