@@ -1,5 +1,4 @@
 //java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 
@@ -49,7 +48,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         String currentDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         date = format.format(Date.parse(currentDate));
-        reset();
+        set();
 
         makeFile();
 
@@ -100,6 +99,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    //This method make file, if there is not one yet
     public void makeFile() {
         try {
             String content = "Date, drank ml of water;\n";
@@ -119,6 +119,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    //This method write data in file.
     public void writeFile(String ml) {
         try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() + "/" + name, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
@@ -129,6 +130,9 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
     }
+
+    //With this method program gets last information from file,
+    // so program can compare last date to current date tell user how much water user is drank today
 
     public String[] readFile() {
         BufferedReader br = null;
@@ -158,7 +162,9 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         return null;
     }
 
-    public void reset() {
+    //This method check if date is changed and set right amount of drinking water of that day. 
+    // if day is changed, water amount is 0ml if not program get right amount of the file, with rideFile.
+    public void set() {
         String[] dates = readFile();
         String current = dates[0].trim();
 
