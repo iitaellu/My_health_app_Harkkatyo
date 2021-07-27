@@ -2,6 +2,7 @@
 
 package com.example.harjoitustyo_ida_viia;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
@@ -18,8 +19,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class FoodFragment extends Fragment {
@@ -27,11 +38,21 @@ public class FoodFragment extends Fragment {
     TextView textTotal;
     Spinner spinnerPrefer, spinnerDiet;
     EditText beefLevel, fishLevel, pork_PoultryLevel, dairyLevel, cheeseLevel, riceLevel, eggLevel, saladLevel, restaurantLevel;
+    String date;
+    String name = "FoodCalculator.csv";
+    String result = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_food, container, false);
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        date = format.format(Date.parse(currentDate));
+
+        makeFile();
 
         beefLevel = (EditText) rootView.findViewById(R.id.beefLevel);
         fishLevel = (EditText) rootView.findViewById(R.id.fishLevel);
@@ -97,9 +118,10 @@ public class FoodFragment extends Fragment {
 
                 try {
 
-                    String result = total(diet, prefer, beef, fish, pork_poultry, dairy, cheese, rice, egg, salad, restaurant);
-                    textTotal.setText(result+" kg CO2/week");
-                    Toast.makeText(getActivity(),"Calculated",Toast.LENGTH_LONG).show();
+                    result = total(diet, prefer, beef, fish, pork_poultry, dairy, cheese, rice, egg, salad, restaurant);
+                    textTotal.setText(result+"kg CO2/week");
+                    writeFile(result);
+                    Toast.makeText(getActivity(),"Saved",Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,7 +131,7 @@ public class FoodFragment extends Fragment {
         return rootView;
     }
 
-    // This method read url-page and find total/day
+    // This method read url-page and find total/week
 
     public String total(String diet, String prefer, String beef, String fish, String pork_poultry, String dairy, String cheese, String rice, String egg, String salad, String restaurant) throws IOException{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -138,4 +160,37 @@ public class FoodFragment extends Fragment {
 
         return resulttotal;
     }
+    //This method make file, if there is not one yet
+    public void makeFile() {
+        try {
+            String content = "Date, kg CO2/week;\n";
+            File file = new File(getActivity().getFilesDir().getPath() + "/" + name);
+
+            if (!file.exists()) {
+                file.createNewFile();
+                System.out.println(file);
+                OutputStreamWriter writer = new OutputStreamWriter(getActivity().openFileOutput(name, Context.MODE_PRIVATE));
+                writer.write(content);
+                writer.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //This method write data in file.
+    public void writeFile(String total) {
+        try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() + "/" + name, true)) {
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.append(date+ ","+ total + ";\n");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
