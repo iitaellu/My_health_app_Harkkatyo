@@ -8,25 +8,6 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/textWater"
-        android:layout_width="316dp"
-        android:layout_height="76dp"
-        android:background="@color/gray_200"
-        android:drawableLeft="@drawable/ic_drink"
-        android:fontFamily="@font/handlee"
-        android:paddingLeft="8dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
-        app:layout_constraintVertical_bias="0.278" />
-
     <Button
         android:id="@+id/startPeriod"
         android:layout_width="69dp"
@@ -69,8 +50,65 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.392" />
+
+    <TextView
+        android:id="@+id/textWater"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_drink"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534" />
+
+    <TextView
+        android:id="@+id/textPeriod"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_period"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.813" />
+
+    <TextView
+        android:id="@+id/textSport"
+        android:layout_width="316dp"
+        android:layout_height="76dp"
+        android:background="@color/gray_200"
+        android:drawableLeft="@drawable/ic_sport"
+        android:fontFamily="@font/handlee"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674" />
 
     <Button
         android:id="@+id/addFood"
@@ -90,14 +128,28 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/handlee"
         android:text="Hi Name!"
-        android:textSize="30dp"
         android:textColor="@color/black"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.261" />
+        app:layout_constraintVertical_bias="0.212" />
+
+    <TextView
+        android:id="@+id/dateTextHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/handlee"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/addSport"
@@ -111,44 +163,6 @@
         app:layout_constraintHorizontal_bias="0.966"
         app:layout_constraintStart_toStartOf="@+id/textSport"
         app:layout_constraintTop_toTopOf="@+id/textSport" />
-
-    <TextView
-        android:id="@+id/textSport"
-        android:layout_width="316dp"
-        android:layout_height="76dp"
-        android:background="@color/gray_200"
-        android:drawableLeft="@drawable/ic_sport"
-        android:fontFamily="@font/handlee"
-        android:paddingLeft="8dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
-        app:layout_constraintVertical_bias="0.485" />
-
-    <TextView
-        android:id="@+id/textPeriod"
-        android:layout_width="316dp"
-        android:layout_height="76dp"
-        android:background="@color/gray_200"
-        android:drawableLeft="@drawable/ic_period"
-        android:fontFamily="@font/handlee"
-        android:paddingLeft="8dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameHello"
-        app:layout_constraintVertical_bias="0.687" />
 
     <Button
         android:id="@+id/statistics"
