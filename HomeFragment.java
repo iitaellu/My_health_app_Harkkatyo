@@ -18,6 +18,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
@@ -32,13 +37,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        TextView dateTextHead = (TextView) rootView.findViewById(R.id.dateTextHead);
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        String date = format.format(Date.parse(currentDate));
+        dateTextHead.setText(date);
 
         TextView textFood = (TextView) rootView.findViewById(R.id.textFood);
         TextView textWater = (TextView) rootView.findViewById(R.id.textWater);
         TextView textSport = (TextView) rootView.findViewById(R.id.textSport);
         TextView textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
+        
 
-        //TODO seuraavat infot pitäs saada oiolta
+        //TODO seuraavat infot pitäs saada jostain
         textFood.setText("    Food counter\n    0/1800 kcal");
         textWater.setText("    Water counter\n    0/5 Glasses");
         textSport.setText("    Exercise\n    0 min");
