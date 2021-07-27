@@ -26,7 +26,6 @@
         android:layout_width="298dp"
         android:layout_height="80dp"
         android:gravity="center"
-        android:text="You are drank 0 ml of water today"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,42 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.97" />
-
-    <Button
-        android:id="@+id/bigGlass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="600ml"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711" />
-
-    <Button
-        android:id="@+id/mediumGlass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="500ml"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
-
-    <Button
-        android:id="@+id/smallGlass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="250ml"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
 
     <Button
         android:id="@+id/largeGlass"
@@ -81,7 +44,55 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
+        app:layout_constraintVertical_bias="0.743" />
+
+    <Button
+        android:id="@+id/mediumGlass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500ml"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <Button
+        android:id="@+id/smallGlass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="250ml"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.834" />
+
+    <Button
+        android:id="@+id/bigGlass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="600ml"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.651" />
 
     <TextView
         android:id="@+id/infoWater2"
