@@ -81,7 +81,7 @@ public class Signin extends AppCompatActivity {
                 //Should check the password is good
                 if(pass.matches(pattern)) {
                     //This shoud check if the password is valid or not, but it only check for the length
-                    password.setError("Password must have at least: 8 character, one uppercase, one number and one symbol");
+                    password.setError("Password must have at least: 12 character, one uppercase, one number and one symbol");
                     System.out.println(pass.matches(pattern));
                     return;
                 }
