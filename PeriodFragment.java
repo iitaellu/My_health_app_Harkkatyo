@@ -1,4 +1,4 @@
-package com.example.myhealth;
+package com.example.harjoitustyo_ida_viia;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
