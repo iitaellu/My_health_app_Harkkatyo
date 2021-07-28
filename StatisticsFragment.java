@@ -1,8 +1,6 @@
-package com.example.myhealth;
-
+package com.example.harjoitustyo_ida_viia;
 
 //xml file:https://www.youtube.com/watch?v=IJEIQ1f5KB8
-
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
