@@ -1,10 +1,8 @@
 package com.example.harjoitustyo_ida_viia;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import com.google.android.material.navigation.NavigationView;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -27,10 +23,11 @@ import java.util.Date;
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
-    Button addFood, addWater, addSport, startPeriod;
     String Food = "FoodCounter.csv";
     String Water = "WaterCounter.csv";
     String Exercise = "Exercise.csv";
+    String date;
+    TextView textFood, textWater, textSport, textPeriod;
 
     //TODO pitäs siis tervehtiä käyttäjä-oliota
 
@@ -44,22 +41,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        String date = format.format(Date.parse(currentDate));
+        SimpleDateFormat format = new SimpleDateFormat("d.M.yyyy");
+        date = format.format(Date.parse(currentDate));
         dateTextHead.setText(date);
 
-        TextView textFood = (TextView) rootView.findViewById(R.id.textFood);
-        TextView textWater = (TextView) rootView.findViewById(R.id.textWater);
-        TextView textSport = (TextView) rootView.findViewById(R.id.textSport);
-        TextView textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
+        textFood = (TextView) rootView.findViewById(R.id.textFood);
+        textWater = (TextView) rootView.findViewById(R.id.textWater);
+        textSport = (TextView) rootView.findViewById(R.id.textSport);
+        textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
 
-        String totalFood = readSimpleFile(Food);
-        String totalWater = readSimpleFile(Water);
-        String[] totalInfo = readComplicatedFile(Exercise);
-
-        textFood.setText("    Food counter\n    "+totalFood+" Kg CO2 last week");
-        textWater.setText("    Water counter\n    "+totalWater+"ml today");
-        textSport.setText("    Exercise\n    "+ totalInfo[1]+": "+totalInfo[2]+"h today");
+        setFoodText();
+        setWaterText();
+        setExerciseText();
         textPeriod.setText("    Menstrual tracker\n    29 day left");
 
         Button addFood = (Button) rootView.findViewById(R.id.addFood);
@@ -115,39 +108,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     //This method read smaller files, like Water counter and food counter.
     //It returns total from last row.
-    public String readSimpleFile(String name) {
-        BufferedReader br = null;
-        try {
-            String line;
-            String[] lines;
-            br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() + "/" + name));
-            StringBuffer buffer = new StringBuffer();
-            while ((line = br.readLine()) != null) {
-                line = line+",";
-                buffer.append(line);
-            }
-            String result = buffer.toString();
-            lines = result.split(",");
-
-            String wanted = lines[lines.length-1];
-            String[] info = wanted.split(";");
-            String total = info[1];
-            return total;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return null;
-    }
-    
-    //This method read little bigger files, like exercise file. 
-    // It returns last row of file.
-    public String[] readComplicatedFile(String name) {
+    public String[] readFile(String name) {
         BufferedReader br = null;
         try {
             String line;
@@ -173,6 +134,56 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 ex.printStackTrace();
             }
         }
-        return null;
+        String[] info = null;
+        return info;
+    }
+
+    //This method set to food counter info-box and check if there is old result to show
+    public void setFoodText(){
+        String[] foodInfo = readFile(Food);
+
+        if (foodInfo != null) {
+            textFood.setText("    Food counter\n    " + foodInfo[1] + " Kg CO2 last time");
+        }
+        else{
+            textFood.setText("    Food counter\n    0 Kg CO2 last time");
+        }
+    }
+
+    //This method set to water counter info-box and check if there is result from that day
+    public void setWaterText(){
+        String[] waterInfo = readFile(Water);
+
+        if (waterInfo != null) {
+            String oldDate = waterInfo[0];
+            if (oldDate.equals(date)){
+                textWater.setText("    Water counter\n    " + waterInfo[1] + "ml today");
+            }
+            else{
+                textWater.setText("    Water counter\n    0 ml today");;
+            }
+        }
+        else {
+            textWater.setText("    Water counter\n    0 ml today");
+        }
+    }
+
+    //This method set to exercise info-box and check if there is result from that day
+    public void setExerciseText(){
+        String[] exerciseInfo = readFile(Exercise);
+
+        if (exerciseInfo != null) {
+            String oldDate = (exerciseInfo[0]).trim();
+            System.out.println(oldDate);
+            if (oldDate.equals(date)){
+                textSport.setText("    Exercise\n    " + exerciseInfo[1] + ": " + exerciseInfo[2] + "h today");
+            }
+            else {
+                textSport.setText("    Exercise\n    Type: 0.00h today");
+            }
+        }
+        else {
+            textSport.setText("    Exercise\n    Type: 0.00h today");
+        }
     }
 }
