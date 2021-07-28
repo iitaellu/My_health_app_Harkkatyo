@@ -162,7 +162,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             lines = result.split(",");
 
             String wanted = lines[lines.length-1];
-            String[] info = wanted.split(":");
+            String[] info = wanted.split(";");
             return info;
         } catch (IOException e) {
             e.printStackTrace();
