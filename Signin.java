@@ -69,6 +69,7 @@ public class Signin extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(name)){
                     username.setError("Username is required");
+                    return;
                 }
                 if(TextUtils.isEmpty(mail)){
                     email.setError("Email is required");
@@ -79,8 +80,8 @@ public class Signin extends AppCompatActivity {
                     return;
                 }
                 //Should check the password is good
-                if(pass.matches(pattern)) {
-                    //This shoud check if the password is valid or not, but it only check for the length
+                if(!pass.matches(pattern)) {
+                    //This check if the password is valid or not
                     password.setError("Password must have at least: 12 character, one uppercase, one number and one symbol");
                     System.out.println(pass.matches(pattern));
                     return;
