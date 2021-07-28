@@ -47,7 +47,7 @@ public class FoodFragment extends Fragment {
 
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("d.M.yyyy");
         date = format.format(Date.parse(currentDate));
 
         makeFile();
