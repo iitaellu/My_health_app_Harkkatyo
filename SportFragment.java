@@ -1,4 +1,4 @@
-package com.example.myhealth;
+package com.example.harjoitustyo_ida_viia;
 
 import android.content.Context;
 import android.os.Bundle;
