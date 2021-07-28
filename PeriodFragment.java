@@ -44,6 +44,7 @@ public class PeriodFragment extends Fragment {
                 if(btnStartEnd.getText().toString().length() > 10) {
                     btnStartEnd.setText("End period");
                     tvDays.setText("1");
+                    tvDaysLeft.setText(String.valueOf(etCycle.getText().toString()));
 
                 }
                 else{
