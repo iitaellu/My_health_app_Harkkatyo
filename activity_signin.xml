@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.235" />
 
     <TextView
-        android:id="@+id/tvSignin"
+        android:id="@+id/tvOldUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/handlee"
