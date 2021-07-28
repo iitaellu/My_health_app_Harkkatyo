@@ -9,10 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.example.My_Health.R;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,8 +21,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-
-
 
 public class SportFragment extends Fragment {
 
@@ -62,7 +61,7 @@ public class SportFragment extends Fragment {
         tvEHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 Toast.makeText(getActivity(), "View previous exercises in csv file: "+getContext().getFilesDir()+ "/" +name, Toast.LENGTH_LONG).show();
             }
         });
@@ -105,7 +104,7 @@ public class SportFragment extends Fragment {
 
             }
         });
-        
+
         return rootView;
 
     }
@@ -113,20 +112,20 @@ public class SportFragment extends Fragment {
 
     public void createFile(){
         try {
-        String content = "Exercise:Date:Time(h.min):Distance(km)\n";
-        File file = new File(getActivity().getFilesDir().getPath()+"/"+name);
+            String content = "Date;Exercise;Time(h.min);Distance(km)\n";
+            File file = new File(getActivity().getFilesDir().getPath()+"/"+name);
 
-        if(!file.exists()){
-            file.createNewFile();
-            System.out.println(file);
-            OutputStreamWriter writer = new OutputStreamWriter(getActivity().openFileOutput(name, Context.MODE_PRIVATE));
-            writer.write(content);
-            writer.close();
+            if(!file.exists()){
+                file.createNewFile();
+                System.out.println(file);
+                OutputStreamWriter writer = new OutputStreamWriter(getActivity().openFileOutput(name, Context.MODE_PRIVATE));
+                writer.write(content);
+                writer.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
 
     }
 
@@ -134,7 +133,7 @@ public class SportFragment extends Fragment {
     public void writeFile(String exer, String date, String time, String distance) {
         try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() +"/"+ name, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
-            writer.append(exer+":"+date+":"+time+":"+distance+"\n");
+            writer.append(date+";"+exer+";"+time+";"+distance+"\n");
             writer.flush();
             writer.close();
         } catch (IOException e) {
@@ -142,5 +141,23 @@ public class SportFragment extends Fragment {
         }
     }
 
-   
+    public void readFile(){
+        BufferedReader br = null;
+        try {
+            String line;
+            br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+name));
+            while ((line = br.readLine()) != null){
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null)br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 }
