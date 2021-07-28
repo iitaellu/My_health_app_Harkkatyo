@@ -142,23 +142,5 @@ public class SportFragment extends Fragment {
         }
     }
 
-    public void readFile(){
-        BufferedReader br = null;
-        try {
-            String line;
-            br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+name));
-            while ((line = br.readLine()) != null){
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
+   
 }
