@@ -39,7 +39,7 @@ public class Signin extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         sign = findViewById(R.id.btnSignin);
-        login = findViewById(R.id.tvSignin);
+        login = findViewById(R.id.tvOldUser);
 
         fAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
