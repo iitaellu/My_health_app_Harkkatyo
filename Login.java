@@ -1,4 +1,4 @@
-package com.example.loginsystem;
+package com.example.harjoitustyo_ida_viia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
