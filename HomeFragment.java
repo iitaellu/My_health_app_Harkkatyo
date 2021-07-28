@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         textFood.setText("    Food counter\n    "+totalFood+" Kg CO2 last week");
         textWater.setText("    Water counter\n    "+totalWater+"ml today");
-        textSport.setText("    Exercise\n    "+ totalInfo[0]+": "+totalInfo[2]+"h today");
+        textSport.setText("    Exercise\n    "+ totalInfo[1]+": "+totalInfo[2]+"h today");
         textPeriod.setText("    Menstrual tracker\n    29 day left");
 
         Button addFood = (Button) rootView.findViewById(R.id.addFood);
