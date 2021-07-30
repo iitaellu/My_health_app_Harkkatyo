@@ -1,5 +1,3 @@
-//layout
-
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -68,8 +66,8 @@
         android:backgroundTint="#4CAF50"
         android:fontFamily="@font/handlee"
         android:text="Sign in"
-        android:textColor="#000000"
         android:textSize="16dp"
+        android:textStyle="bold"
         app:iconTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
