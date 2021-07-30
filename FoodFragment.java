@@ -6,21 +6,20 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.io.BufferedReader;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -33,24 +32,33 @@ import java.util.Scanner;
 
 public class FoodFragment extends Fragment {
 
+    String person;
+
     TextView textTotal;
     Spinner spinnerPrefer, spinnerDiet;
     EditText beefLevel, fishLevel, pork_PoultryLevel, dairyLevel, cheeseLevel, riceLevel, eggLevel, saladLevel, restaurantLevel;
     String date;
-    String name = "FoodCounter.csv";
+    String name = ".FoodCounter.csv";
     String result = null;
+
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_food, container, false);
 
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+        person = fAuth.getCurrentUser().getUid();
+
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
-        SimpleDateFormat format = new SimpleDateFormat("d.M.yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         date = format.format(Date.parse(currentDate));
 
-        makeFile();
+        makeFile(person);
 
         beefLevel = (EditText) rootView.findViewById(R.id.beefLevel);
         fishLevel = (EditText) rootView.findViewById(R.id.fishLevel);
@@ -118,7 +126,7 @@ public class FoodFragment extends Fragment {
 
                     result = total(diet, prefer, beef, fish, pork_poultry, dairy, cheese, rice, egg, salad, restaurant);
                     textTotal.setText(result+" kg CO2/week");
-                    writeFile(result);
+                    writeFile(result, person);
                     Toast.makeText(getActivity(),"Saved",Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -159,15 +167,15 @@ public class FoodFragment extends Fragment {
         return resulttotal;
     }
     //This method make file, if there is not one yet
-    public void makeFile() {
+    public void makeFile(String person) {
         try {
             String content = "Date;kg CO2/week\n";
-            File file = new File(getActivity().getFilesDir().getPath() + "/" + name);
+            File file = new File(getActivity().getFilesDir().getPath() + "/" + person+name);
 
             if (!file.exists()) {
                 file.createNewFile();
                 System.out.println(file);
-                OutputStreamWriter writer = new OutputStreamWriter(getActivity().openFileOutput(name, Context.MODE_PRIVATE));
+                OutputStreamWriter writer = new OutputStreamWriter(getActivity().openFileOutput(person+name, Context.MODE_PRIVATE));
                 writer.write(content);
                 writer.close();
             }
@@ -179,8 +187,8 @@ public class FoodFragment extends Fragment {
     }
 
     //This method write data in file.
-    public void writeFile(String total) {
-        try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() + "/" + name, true)) {
+    public void writeFile(String total, String person) {
+        try (FileWriter fw = new FileWriter(getActivity().getFilesDir().getPath() + "/" + person+name, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
             writer.append(date+ ";"+ total + "\n");
             writer.flush();
@@ -190,4 +198,3 @@ public class FoodFragment extends Fragment {
         }
     }
 }
-
