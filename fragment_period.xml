@@ -68,17 +68,18 @@
 
     <TextView
         android:id="@+id/tvDaysLeft"
-        android:layout_width="19dp"
-        android:layout_height="29dp"
+        android:layout_width="34dp"
+        android:layout_height="25dp"
         android:fontFamily="@font/handlee"
+        android:gravity="center"
         android:hint="0"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.417" />
+        app:layout_constraintVertical_bias="0.42" />
 
     <EditText
         android:id="@+id/etCycle"
@@ -147,6 +148,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/handlee"
         android:text="Save Changes"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,10 +171,11 @@
 
     <TextView
         android:id="@+id/tvDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="34dp"
+        android:layout_height="25dp"
         android:fontFamily="@font/handlee"
         android:hint="0"
+        android:gravity="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView22"
@@ -186,6 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/handlee"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.959"
