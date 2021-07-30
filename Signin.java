@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -29,7 +30,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,10 +48,13 @@ public class Signin extends AppCompatActivity {
     Button sign;
     TextView login;
 
+    String name = ".newProf.csv";
+
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +78,6 @@ public class Signin extends AppCompatActivity {
                 startActivity(new Intent(Signin.this, Login.class));
             }
         });
-
-
-        /*
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), Login.class));
-            Toast.makeText(this, "What happened???", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        */
-
 
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,14 +116,18 @@ public class Signin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Signin.this, "User created", Toast.LENGTH_SHORT).show();
+                            //add user firestore
                             userID = fAuth.getCurrentUser().getUid();
+                            createFile(userID);
+                            writeFile(name,userID);
+                            Toast.makeText(Signin.this, "this "+userID, Toast.LENGTH_SHORT).show();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user= new HashMap<>();
                             user.put("Username", name);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: user Profile is created for"+userID);
+                                    Log.d(TAG, "onSuccess: user Profile is created for"+documentReference.getId());
                                 }
                             });
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -135,6 +139,37 @@ public class Signin extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void createFile(String person){
+        try {
+            String content = "Name;\n";
+            File file = new File(this.getFilesDir().getPath()+"/"+person+name);
+
+            if(!file.exists()){
+                file.createNewFile();
+                System.out.println(file);
+                OutputStreamWriter writer = new OutputStreamWriter(this.openFileOutput(person+name, Context.MODE_PRIVATE));
+                writer.write(content);
+                writer.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void writeFile(String newname, String person) {
+        try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+name, true)) {
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.append(newname+";\n");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
