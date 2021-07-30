@@ -1,5 +1,3 @@
-//java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 import androidx.annotation.NonNull;
