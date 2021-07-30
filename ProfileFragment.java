@@ -1,4 +1,3 @@
-//java -> eka file
 package com.example.harjoitustyo_ida_viia;
 
 import android.os.Bundle;
