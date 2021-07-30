@@ -8,26 +8,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.My_Health.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
+
 
 public class StatisticsFragment extends Fragment {
 
-    String Food = "FoodCounter.csv";
-    String Water = "WaterCounter.csv";
-    String Exercise = "Exercise.csv";
+    String person;
+
+    String Food = ".FoodCounter.csv";
+    String Water = ".WaterCounter.csv";
+    String Exercise = ".Exercise.csv";
 
     String empt="The data file is empty";
+
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+
 
     @Nullable
     @Override
@@ -40,6 +45,10 @@ public class StatisticsFragment extends Fragment {
 
         TextView tvData = rootView.findViewById(R.id.tvDataDisplay);
 
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        person = fAuth.getCurrentUser().getUid();
 
         btnFoodData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +57,7 @@ public class StatisticsFragment extends Fragment {
                 String line ="";
                 StringBuffer stringBuffer = new StringBuffer();
                 try {
-                    br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+Food));
+                    br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+person+Food));
                     while ((line = br.readLine()) != null){
                         stringBuffer.append(line+"\n");
                     }
@@ -76,7 +85,7 @@ public class StatisticsFragment extends Fragment {
                 String line="";
                 StringBuffer stringBuffer = new StringBuffer();
                 try {
-                    br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+Water));
+                    br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+person+Water));
                     while ((line = br.readLine()) != null){
                         stringBuffer.append(line+"\n");
                     }
@@ -104,11 +113,11 @@ public class StatisticsFragment extends Fragment {
                 String line ="";
                 StringBuffer stringBuffer = new StringBuffer();
                 try {
-                    br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+Exercise));
+                    br = new BufferedReader(new FileReader(getActivity().getFilesDir().getPath() +"/"+person + Exercise));
                     while ((line = br.readLine()) != null){
-                            stringBuffer.append(line+"\n");
-                        }
-                        tvData.setText(stringBuffer);
+                        stringBuffer.append(line+"\n");
+                    }
+                    tvData.setText(stringBuffer);
 
                 } catch (IOException e) {
                     e.printStackTrace();
