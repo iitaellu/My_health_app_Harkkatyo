@@ -1,5 +1,3 @@
-//java -> eka file
-
 package com.example.harjoitustyo_ida_viia;
 
 import android.os.Bundle;
@@ -16,7 +14,5 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_settings, container, false);
-
-        //TODO asetus jutus...
     }
 }
