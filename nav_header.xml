@@ -19,13 +19,13 @@
         android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:textSize="18sp"
-        android:text="User name"
-        android:fontFamily="@font/handlee"
+        android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:clickable="true"/>
+        android:fontFamily="@font/handlee"
+        android:paddingTop="8dp"
+        android:text="View profile"
+        android:textSize="18sp" />
 
 
 </LinearLayout>
