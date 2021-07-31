@@ -13,4 +13,5 @@ Project design https://lut-my.sharepoint.com/:w:/g/personal/viia_mantymaki_stude
 
 Final project https://lut-my.sharepoint.com/:w:/g/personal/viia_mantymaki_student_lut_fi/EbnFtaCwElpBqZj4mZZ8R7cBXpExB7IOG9dcSpjpWkJAHQ?e=BfwLmE
 
-Demovideo tähän linkki
+Demovideo https://drive.google.com/file/d/1qw2l_8aOCdjuHTtBRRs0rO1dW18jH-6s/view?usp=sharing
+
