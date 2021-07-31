@@ -62,9 +62,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         textWater = (TextView) rootView.findViewById(R.id.textWater);
         textSport = (TextView) rootView.findViewById(R.id.textSport);
         textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
-
+        
         String[] userinfo = readFile(name, person);
-        userNameHello.setText("Hi "+userinfo[0]+"!");
+        if(userinfo != null){
+            userNameHello.setText("Hi "+userinfo[0]+"!");
+        }else {
+            userNameHello.setText("Hi!");
+        }
 
         setFoodText();
         setWaterText();
