@@ -30,8 +30,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     String Food = ".FoodCounter.csv";
     String Water = ".WaterCounter.csv";
     String Exercise = ".Exercise.csv";
+    String name = ".newProf.csv";
     String date;
-    TextView textFood, textWater, textSport, textPeriod;
+    TextView userNameHello, textFood, textWater, textSport, textPeriod;
 
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -56,10 +57,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         date = format.format(Date.parse(currentDate));
         dateTextHead.setText(date);
 
+        userNameHello = (TextView) rootView.findViewById(R.id.userNameHello);
         textFood = (TextView) rootView.findViewById(R.id.textFood);
         textWater = (TextView) rootView.findViewById(R.id.textWater);
         textSport = (TextView) rootView.findViewById(R.id.textSport);
         textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
+
+        String[] userinfo = readFile(name, person);
+        if(userinfo != null){
+            userNameHello.setText("Hi "+userinfo[0]+"!");
+        }else {
+            userNameHello.setText("Hi!");
+        }
 
         setFoodText();
         setWaterText();
