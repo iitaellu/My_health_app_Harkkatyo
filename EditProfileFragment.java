@@ -126,27 +126,8 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
 
         return rootView;
     }
-
-    /*
-    @Override
-    public void onClick(View v) {
-
         //TODO Tallenna valitut arvot tässäkohtaa,
-        // muussa tapauksessa niiden on unohduttava
 
-        writeFile(userAge,userWeight, userHeight, person);
-
-        fragment = new ProfileFragment();
-        FragmentTransaction transition = getFragmentManager().beginTransaction();
-        transition.replace(R.id.fragment_container, fragment);
-        transition.addToBackStack(null);
-        transition.commit();
-        Toast.makeText(getActivity(),"Saved",Toast.LENGTH_LONG).show();
-    }
-
-     */
-
-    //tän voi ottaa pois luokan.
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(parent.getId()==R.id.ageSpinner){
