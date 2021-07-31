@@ -120,7 +120,6 @@ public class Signin extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
                             createFile(userID);
                             writeFile(name,userID);
-                            Toast.makeText(Signin.this, "this "+userID, Toast.LENGTH_SHORT).show();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user= new HashMap<>();
                             user.put("Username", name);
