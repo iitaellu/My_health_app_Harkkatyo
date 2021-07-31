@@ -102,7 +102,6 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
         weightSpinner.setOnItemSelectedListener(this);
         heightSpinner.setOnItemSelectedListener(this);
 
-        //Syystä tai toisesra ylimääräiset huutelut, ennen minkään valitsemista...
 
         createFile(person);
 
