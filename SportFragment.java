@@ -67,7 +67,7 @@ public class SportFragment extends Fragment {
         tvEHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "View previous exercises in csv file: "+getContext().getFilesDir()+ "/" +name, Toast.LENGTH_LONG).show();
+               Toast.makeText(getActivity(), "View previous exercises in statistics", Toast.LENGTH_LONG).show();
             }
         });
 
