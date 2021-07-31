@@ -30,9 +30,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     String Food = ".FoodCounter.csv";
     String Water = ".WaterCounter.csv";
     String Exercise = ".Exercise.csv";
-    String name = ".newProf.csv";
     String date;
-    TextView userNameHello, textFood, textWater, textSport, textPeriod;
+    TextView textFood, textWater, textSport, textPeriod;
 
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -57,18 +56,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         date = format.format(Date.parse(currentDate));
         dateTextHead.setText(date);
 
-        userNameHello = (TextView) rootView.findViewById(R.id.userNameHello);
         textFood = (TextView) rootView.findViewById(R.id.textFood);
         textWater = (TextView) rootView.findViewById(R.id.textWater);
         textSport = (TextView) rootView.findViewById(R.id.textSport);
         textPeriod = (TextView) rootView.findViewById(R.id.textPeriod);
-        
-        String[] userinfo = readFile(name, person);
-        if(userinfo != null){
-            userNameHello.setText("Hi "+userinfo[0]+"!");
-        }else {
-            userNameHello.setText("Hi!");
-        }
 
         setFoodText();
         setWaterText();
@@ -128,7 +119,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     //This method read smaller files, like Water counter and food counter.
     //It returns total from last row.
-    public String[] readFile(String name,String person) {
+    public String[] readFile(String name, String person) {
         BufferedReader br = null;
         try {
             String line;
@@ -160,19 +151,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     //This method set to food counter info-box and check if there is old result to show
     public void setFoodText(){
-        String[] foodInfo = readFile(Food,person);
+        String[] foodInfo = readFile(Food, person);
 
         if (foodInfo != null) {
-            textFood.setText("    Food counter\n    " + foodInfo[1] + " Kg CO2 last time");
+            textFood.setText("    Food counter\n    " + foodInfo[1] + "Kg CO2 last time");
         }
         else{
-            textFood.setText("    Food counter\n    0 Kg CO2 last time");
+            textFood.setText("    Food counter\n    0Kg CO2 last time");
         }
     }
 
     //This method set to water counter info-box and check if there is result from that day
     public void setWaterText(){
-        String[] waterInfo = readFile(Water,person);
+        String[] waterInfo = readFile(Water, person);
 
         if (waterInfo != null) {
             String oldDate = waterInfo[0];
@@ -190,7 +181,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     //This method set to exercise info-box and check if there is result from that day
     public void setExerciseText(){
-        String[] exerciseInfo = readFile(Exercise,person);
+        String[] exerciseInfo = readFile(Exercise, person);
 
         if (exerciseInfo != null) {
             String oldDate = (exerciseInfo[0]).trim();
