@@ -37,6 +37,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
 
     String person;
     String name =".ProfileInfo.csv";
+    String uname = ".newProf.csv";
 
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -57,7 +58,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
         fStore = FirebaseFirestore.getInstance();
         person = fAuth.getCurrentUser().getUid();
 
-        String [] nameinfo = readFile(name, person);
+        String [] nameinfo = readFile(uname, person);
 
         if(nameinfo != null){
             userProfile.setText(nameinfo[0]);
@@ -65,7 +66,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
             userProfile.setText("");
         }
 
-        createFile(person);
+        createFile(name);
 
         //Populate Age spinner
         Integer [] age = new Integer[100];
@@ -75,11 +76,12 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
             age[i] = Age;
             Age++;
         }
+
         ArrayAdapter<Integer> ageAdapter = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, age);
         ageAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         ageSpinner.setAdapter(ageAdapter);
 
-        String userAge = ageSpinner.getSelectedItem().toString();
+        //String userAge = ageSpinner.getSelectedItem().toString();
 
         //Populate weight spinner
         Double [] weight = new Double[250];
@@ -94,7 +96,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
         weightAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         weightSpinner.setAdapter(weightAdapter);
 
-        String userWeight = weightSpinner.getSelectedItem().toString();
+        //String userWeight = weightSpinner.getSelectedItem().toString();
 
         //Populate height spinner
         Double [] height = new Double[320];
@@ -108,7 +110,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
         heightAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         heightSpinner.setAdapter(heightAdapter);
 
-        String userHeight = heightSpinner.getSelectedItem().toString();
+        //String userHeight = heightSpinner.getSelectedItem().toString();
 
         ageSpinner.setOnItemSelectedListener(this);
         weightSpinner.setOnItemSelectedListener(this);
@@ -121,6 +123,10 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String userAge = ageSpinner.getSelectedItem().toString();
+                String userWeight = weightSpinner.getSelectedItem().toString();
+                String userHeight = heightSpinner.getSelectedItem().toString();
+
                 writeFile(userAge,userWeight, userHeight, person);
 
                 fragment = new ProfileFragment();
@@ -132,7 +138,6 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
             }
         });
 
-        //save.setOnClickListener(this);
 
         return rootView;
     }
@@ -140,7 +145,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.getId()==R.id.ageSpinner){
+        if(parent.getId()==R.id.ageSpinner ){
             //Toast.makeText(getActivity(), "Age selected", Toast.LENGTH_SHORT).show();
         }
         else if(parent.getId()==R.id.weightSpinner){
@@ -149,6 +154,7 @@ public class EditProfileFragment extends Fragment implements AdapterView.OnItemS
         else if (parent.getId()==R.id.heightSpinner){
             //Toast.makeText(getActivity(), "Height selected", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
