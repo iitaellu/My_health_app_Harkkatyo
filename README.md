@@ -11,6 +11,6 @@ The application is in places still a raw version.
 Project design https://lut-my.sharepoint.com/:w:/g/personal/viia_mantymaki_student_lut_fi/ESB1rLc0Z7tKm5Bwxo5gWnYBVzhOmbp6vGF2VmE3nfU6CQ?e=5IUyZC
 
 
-Final project tähän sitten linkki
+Final project https://lut-my.sharepoint.com/:w:/g/personal/viia_mantymaki_student_lut_fi/EbnFtaCwElpBqZj4mZZ8R7cBXpExB7IOG9dcSpjpWkJAHQ?e=BfwLmE
 
 Demovideo tähän linkki
