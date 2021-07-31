@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             userProfile.setText(nameinfo[0]);
         }
         else {
-            userProfile.setText("USer name");
+            userProfile.setText("User name");
         }
 
         Button edit = rootView.findViewById(R.id.edit);
@@ -118,4 +118,3 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
 }
-
