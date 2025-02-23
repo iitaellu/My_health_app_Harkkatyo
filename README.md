@@ -1,4 +1,4 @@
-# This is exercise work of Object-oriental course
+# This is exercise work of Object-oriental course.
 
 
 Our application is health application which allows the user to monitor their CO2 consumption per week, 
